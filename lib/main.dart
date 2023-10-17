@@ -111,7 +111,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: WebView(
-        initialUrl: "http://www.naver.com",
+        initialUrl: "http://localhost:5173",
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
