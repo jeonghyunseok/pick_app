@@ -76,11 +76,11 @@ class _WebViewScreenState extends State<WebViewScreen> {
       print("Location permission granted");
     } else if (status.isDenied || status.isPermanentlyDenied) {
       print("Location permission denied");
-      showPermissionDeniedDialog(context);
+      showDeniedDialog(context);
     }
   }
 
-  void showPermissionDeniedDialog(BuildContext context) {
+  void showDeniedDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
