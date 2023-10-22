@@ -73,7 +73,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     final status = await Permission.location.request(); // 위치 권한 요청
 
     if (status.isGranted) {
-      print("Location permission granted");
+      print("Location permission granted"); // 승인
     } else if (status.isDenied || status.isPermanentlyDenied) {
       print("Location permission denied");
       showDeniedDialog(context);
