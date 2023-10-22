@@ -69,7 +69,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   }
 
   Future<void> _requestLocationPermission() async {
-    // 위치 권한 요청 함수 정의
+    // 위치 권한 요청 함수 정의]
     final status = await Permission.location.request(); // 위치 권한 요청
 
     if (status.isGranted) {
