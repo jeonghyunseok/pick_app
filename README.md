@@ -1,6 +1,6 @@
 # pick_app
 
-A new Flutter project.
+A new Flutter project for pick app
 
 ## Getting Started
 
