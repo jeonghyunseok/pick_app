@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(seconds: 2),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.blue,
       body: Center(
         child: Text(
           'PICK!',
@@ -72,6 +72,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     _requestLocationPermission();
 
     ReceiveSharingIntent.getTextStream().listen((String? value) {
+      print("share text" + value.toString());
       setState(() {
         _sharedText = value;
       });
