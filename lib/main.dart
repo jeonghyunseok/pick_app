@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.purple, // 보라색 배경
+      backgroundColor: Colors.blue,
       body: Center(
         child: Text(
           'PICK!',
@@ -86,8 +86,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
         print('공유된 정보 $value');
       });
     });
-
-
   }
 
   Future<void> _requestLocationPermission() async {
