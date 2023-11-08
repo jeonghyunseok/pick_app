@@ -1,7 +1,7 @@
 name: pick_app
 description: A new share location project.
 
-publish_to: "none" 
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -14,7 +14,6 @@ dependencies:
   webview_flutter: ^3.0.0
   permission_handler: ^9.0.1
   cupertino_icons: ^1.0.2
-  receive_sharing_intent: ^1.4.5
   flutter_native_splash: ^2.3.5
 
 dev_dependencies:

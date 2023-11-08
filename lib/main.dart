@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+// import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,22 +71,22 @@ class _WebViewScreenState extends State<WebViewScreen> {
     super.initState();
     _requestLocationPermission();
 
-    ReceiveSharingIntent.getTextStream().listen((String? value) {
-      print("share text" + value.toString());
-      setState(() {
-        _sharedText = value;
-      });
-    }, onError: (err) {
-      print("getLinkStream error: $err");
-    });
+    // ReceiveSharingIntent.getTextStream().listen((String? value) {
+    //   print("share text" + value.toString());
+    //   setState(() {
+    //     _sharedText = value;
+    //   });
+    // }, onError: (err) {
+    //   print("getLinkStream error: $err");
+    // });
 
-    // For sharing or opening urls/text coming from outside the app while the app is closed
-    ReceiveSharingIntent.getInitialText().then((String? value) {
-      setState(() {
-        _sharedText = value;
-        print('공유된 정보 $value');
-      });
-    });
+    // // For sharing or opening urls/text coming from outside the app while the app is closed
+    // ReceiveSharingIntent.getInitialText().then((String? value) {
+    //   setState(() {
+    //     _sharedText = value;
+    //     print('공유된 정보 $value');
+    //   });
+    // });
   }
 
   Future<void> _requestLocationPermission() async {
