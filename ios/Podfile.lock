@@ -1,9 +1,17 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_inappwebview (0.0.1):
+    - Flutter
+    - flutter_inappwebview/Core (= 0.0.1)
+    - OrderedSet (~> 5.0)
+  - flutter_inappwebview/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 5.0)
   - flutter_native_splash (0.0.1):
     - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
+  - OrderedSet (5.0.0)
   - permission_handler_apple (9.1.1):
     - Flutter
   - receive_sharing_intent (0.0.1):
@@ -13,15 +21,22 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - receive_sharing_intent (from `.symlinks/plugins/receive_sharing_intent/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
+SPEC REPOS:
+  trunk:
+    - OrderedSet
+
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_inappwebview:
+    :path: ".symlinks/plugins/flutter_inappwebview/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   geolocator_apple:
@@ -35,8 +50,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_inappwebview: 3d32228f1304635e7c028b0d4252937730bbc6cf
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
+  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   receive_sharing_intent: c0d87310754e74c0f9542947e7cbdf3a0335a3b1
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f

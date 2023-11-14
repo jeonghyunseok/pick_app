@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 void main() {
@@ -9,11 +9,11 @@ void main() {
 }
 
 class PickApp extends StatelessWidget {
-  const PickApp({super.key});
+  const PickApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
@@ -21,7 +21,7 @@ class PickApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -31,25 +31,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => WebViewScreen(),
-        ),
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Perform any other asynchronous initialization tasks here
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WebViewScreen(),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
         child: Text(
           'PICK!',
-          style: TextStyle(fontSize: 42, color: Colors.white), // 흰색 글씨
+          style: TextStyle(fontSize: 42, color: Colors.white),
         ),
       ),
     );
@@ -65,6 +70,7 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen> {
   String? _sharedText;
+  late InAppWebViewController _webViewController;
 
   @override
   void initState() {
@@ -72,7 +78,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     _requestLocationPermission();
 
     ReceiveSharingIntent.getTextStream().listen((String? value) {
-      print("share text" + value.toString());
+      print("shared text: $value");
       setState(() {
         _sharedText = value;
       });
@@ -80,21 +86,20 @@ class _WebViewScreenState extends State<WebViewScreen> {
       print("getLinkStream error: $err");
     });
 
-    // For sharing or opening urls/text coming from outside the app while the app is closed
+    // For sharing or opening URLs/text coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialText().then((String? value) {
       setState(() {
         _sharedText = value;
-        print('공유된 정보 $value');
+        print('shared info: $value');
       });
     });
   }
 
   Future<void> _requestLocationPermission() async {
-    // 위치 권한 요청 함수 정의]
-    final status = await Permission.location.request(); // 위치 권한 요청
+    final status = await Permission.location.request();
 
     if (status.isGranted) {
-      print("Location permission granted"); // 승인
+      print("Location permission granted");
     } else if (status.isDenied || status.isPermanentlyDenied) {
       print("Location permission denied");
       showDeniedDialog(context);
@@ -106,18 +111,19 @@ class _WebViewScreenState extends State<WebViewScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('권한 거부됨'),
-          content: const Text('위치 권한이 거부되었습니다. 설정에서 권한을 활성화할 수 있습니다.'),
+          title: const Text('Permission Denied'),
+          content: const Text(
+              'Location permission is denied. You can enable it in settings.'),
           actions: <Widget>[
             TextButton(
-              child: const Text('설정 열기'),
+              child: const Text('Open Settings'),
               onPressed: () async {
-                await openAppSettings(); // 앱 설정 화면 열기
+                await openAppSettings();
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('취소'),
+              child: Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -130,10 +136,12 @@ class _WebViewScreenState extends State<WebViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: WebView(
-        initialUrl: "http://naver.com",
-        javascriptMode: JavascriptMode.unrestricted,
+    return Scaffold(
+      body: InAppWebView(
+        initialUrlRequest: URLRequest(url: Uri.parse("http://naver.com")),
+        onWebViewCreated: (controller) {
+          _webViewController = controller;
+        },
       ),
     );
   }
