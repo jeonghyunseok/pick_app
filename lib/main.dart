@@ -5,7 +5,7 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const PickApp());
+  runApp(PickApp());
 }
 
 class PickApp extends StatelessWidget {
