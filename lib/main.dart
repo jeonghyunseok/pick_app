@@ -5,7 +5,7 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(PickApp());
+  runApp(const PickApp());
 }
 
 class PickApp extends StatelessWidget {
@@ -13,7 +13,7 @@ class PickApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
